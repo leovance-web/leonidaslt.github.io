@@ -1,207 +1,311 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Mono — Artist</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  <title>Mono</title>
 
-<style>
-:root {
-  --bg: #000;
-  --fg: #fff;
-  --muted: #888;
-  --accent: #fff;
-}
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+    body {
+      background: #000;
+      display: flex;
+      justify-content: center;
+      color: #fff;
+    }
 
-body {
-  background: var(--bg);
-  color: var(--fg);
-  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
-  line-height: 1.4;
-}
+    /* MOBILE FRAME — NEVER STRETCH */
+    .app {
+      width: 100%;
+      max-width: 390px;
+      min-height: 100vh;
+      background: #000;
+      position: relative;
+      overflow-x: hidden;
+      padding-bottom: 90px;
+    }
 
-/* ================= HERO ================= */
+    /* HEADER */
+    header {
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
 
-.hero {
-  height: 78vh;
-  width: 100%;
-  background: #111;
-  display: flex;
-  align-items: flex-end;
-  padding: 20px;
-  position: relative;
-}
+    /* HERO */
+    .hero {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      background: #111;
+    }
 
-.artist-name {
-  font-size: 28px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-}
+    .hero img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.85;
+    }
 
-/* Resonance waveform (static visual) */
-.waveform {
-  position: absolute;
-  bottom: 70px;
-  left: 20px;
-  right: 20px;
-  height: 30px;
-  display: flex;
-  gap: 4px;
-  opacity: 0.6;
-}
+    .hero-overlay {
+      position: absolute;
+      bottom: 16px;
+      left: 16px;
+      right: 16px;
+    }
 
-.wave {
-  flex: 1;
-  background: var(--accent);
-  opacity: 0.2;
-  border-radius: 2px;
-}
+    .artist-name {
+      font-size: 22px;
+      font-weight: 700;
+    }
 
-/* ================= SECTIONS ================= */
+    .resonance {
+      margin-top: 6px;
+      height: 4px;
+      width: 100%;
+      background: rgba(255,255,255,0.15);
+      border-radius: 2px;
+      overflow: hidden;
+    }
 
-.section {
-  padding: 60px 20px;
-}
+    .resonance-fill {
+      width: 42%;
+      height: 100%;
+      background: #fff;
+    }
 
-.section-title {
-  font-size: 18px;
-  margin-bottom: 20px;
-  color: var(--muted);
-}
+    /* SECTIONS */
+    section {
+      padding: 18px 16px;
+    }
 
-/* Visuals need weight */
-.visuals {
-  height: 55vh;
-  background: #111;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--muted);
-  font-size: 16px;
-}
+    .section-title {
+      font-size: 14px;
+      opacity: 0.6;
+      margin-bottom: 10px;
+    }
 
-/* ================= TRACK ================= */
+    /* BIO */
+    .bio {
+      font-size: 14px;
+      line-height: 1.4;
+      opacity: 0.85;
+    }
 
-.track {
-  padding: 24px 20px;
-  border-top: 1px solid #111;
-  border-bottom: 1px solid #111;
-}
+    /* TRACK ROW */
+    .track {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      cursor: pointer;
+    }
 
-.track-title {
-  font-size: 18px;
-  margin-bottom: 8px;
-}
+    .track-cover {
+      width: 44px;
+      height: 44px;
+      background: #222;
+      flex-shrink: 0;
+    }
 
-.track-meta {
-  font-size: 14px;
-  color: var(--muted);
-}
+    .track-info {
+      flex: 1;
+    }
 
-/* ================= FIXED UI ================= */
+    .track-title {
+      font-size: 14px;
+      font-weight: 500;
+    }
 
-.quick-actions {
-  position: fixed;
-  bottom: 64px;
-  left: 0;
-  right: 0;
-  display: flex;
-  justify-content: space-around;
-  padding: 12px 0;
-  background: rgba(0,0,0,0.9);
-  border-top: 1px solid #111;
-}
+    .track-meta {
+      font-size: 12px;
+      opacity: 0.5;
+    }
 
-.quick-actions button {
-  background: none;
-  border: none;
-  color: var(--fg);
-  font-size: 14px;
-}
+    /* VISUALS */
+    .visual {
+      width: 100%;
+      height: 180px;
+      background: #111;
+      margin-bottom: 12px;
+    }
 
-.now-playing {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 12px 20px;
-  background: #000;
-  border-top: 1px solid #111;
-  font-size: 14px;
-}
+    /* BUTTON */
+    .support-btn {
+      width: 100%;
+      padding: 14px;
+      background: #fff;
+      color: #000;
+      text-align: center;
+      font-weight: 600;
+      border-radius: 6px;
+    }
 
-/* ================= AUDIO ================= */
+    /* QUICK ACTIONS */
+    .quick-actions {
+      position: fixed;
+      right: calc(50% - 195px + 8px);
+      bottom: 120px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      z-index: 10;
+    }
 
-audio {
-  display: none;
-}
-</style>
+    .qa-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+
+    /* NOW PLAYING */
+    .now-playing {
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 390px;
+      height: 64px;
+      background: #0a0a0a;
+      display: flex;
+      align-items: center;
+      padding: 0 16px;
+      font-size: 14px;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+
+    footer {
+      text-align: center;
+      font-size: 12px;
+      opacity: 0.4;
+      padding: 20px 0;
+    }
+  </style>
 </head>
 
 <body>
+  <div class="app">
 
-<!-- HERO -->
-<div class="hero">
-  <div class="waveform">
-    <div class="wave" style="height:20%"></div>
-    <div class="wave" style="height:60%"></div>
-    <div class="wave" style="height:40%"></div>
-    <div class="wave" style="height:80%"></div>
-    <div class="wave" style="height:30%"></div>
-    <div class="wave" style="height:70%"></div>
+    <header>Mono</header>
+
+    <div class="hero">
+      <img src="https://via.placeholder.com/600" alt="Artist">
+      <div class="hero-overlay">
+        <div class="artist-name">LT</div>
+        <div class="resonance">
+          <div class="resonance-fill"></div>
+        </div>
+      </div>
+    </div>
+
+    <section>
+      <div class="bio">
+        Producer. Underground energy. Experimental rhythm.
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title">Pinned Tracks</div>
+
+      <div class="track" onclick="togglePlay()">
+        <div class="track-cover"></div>
+        <div class="track-info">
+          <div class="track-title">Pinned Track</div>
+          <div class="track-meta">LT</div>
+        </div>
+      </div>
+
+      <div class="track">
+        <div class="track-cover"></div>
+        <div class="track-info">
+          <div class="track-title">Pinned Track 2</div>
+          <div class="track-meta">LT</div>
+        </div>
+      </div>
+
+      <div class="track">
+        <div class="track-cover"></div>
+        <div class="track-info">
+          <div class="track-title">Pinned Track 3</div>
+          <div class="track-meta">LT</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title">Discography</div>
+      <div class="track"><div class="track-title">Older Track</div></div>
+      <div class="track"><div class="track-title">Oldest Track</div></div>
+    </section>
+
+    <section>
+      <div class="section-title">Visuals</div>
+      <div class="visual"></div>
+      <div class="visual"></div>
+    </section>
+
+    <section>
+      <div class="support-btn">Back This Artist</div>
+    </section>
+
+    <section>
+      <div class="section-title">Featured On</div>
+      <div class="track-title">Other Artist Track</div>
+    </section>
+
+    <section>
+      <div class="section-title">Similar Artists</div>
+      <div class="track-title">Artist A</div>
+      <div class="track-title">Artist B</div>
+    </section>
+
+    <footer>Powered by Mono</footer>
+
+    <!-- QUICK ACTIONS -->
+    <div class="quick-actions">
+      <div class="qa-btn" onclick="togglePlay()">▶︎</div>
+      <div class="qa-btn">♡</div>
+      <div class="qa-btn">↗︎</div>
+    </div>
+
+    <!-- NOW PLAYING -->
+    <div class="now-playing">
+      Now Playing: Pinned Track
+    </div>
+
+    <audio id="audio" src="track.mp3"></audio>
+
   </div>
-  <div class="artist-name">ARTIST NAME</div>
-</div>
 
-<!-- VISUALS -->
-<div class="section">
-  <div class="section-title">Visuals</div>
-  <div class="visuals">
-    Visual content placeholder
-  </div>
-</div>
+  <script>
+    const audio = document.getElementById('audio');
+    let playing = false;
 
-<!-- TRACK -->
-<div class="track">
-  <div class="track-title">Track Title</div>
-  <div class="track-meta">Mono · Single</div>
-</div>
-
-<!-- AUDIO -->
-<audio id="audio" src="track.mp3"></audio>
-
-<!-- QUICK ACTIONS -->
-<div class="quick-actions">
-  <button onclick="togglePlay()">Play / Pause</button>
-  <button>Save</button>
-  <button>Share</button>
-</div>
-
-<!-- NOW PLAYING -->
-<div class="now-playing" id="nowPlaying">
-  Now Playing: —
-</div>
-
-<script>
-const audio = document.getElementById("audio");
-const nowPlaying = document.getElementById("nowPlaying");
-
-function togglePlay() {
-  if (audio.paused) {
-    audio.play();
-    nowPlaying.textContent = "Now Playing: Track Title";
-  } else {
-    audio.pause();
-    nowPlaying.textContent = "Paused: Track Title";
-  }
-}
-</script>
-
+    function togglePlay() {
+      if (!playing) {
+        audio.play();
+        playing = true;
+      } else {
+        audio.pause();
+        playing = false;
+      }
+    }
+  </script>
 </body>
 </html>
