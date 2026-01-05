@@ -45,8 +45,9 @@
     .hero {
       position: relative;
       width: 100%;
-      aspect-ratio: 1 / 1;
+      height: 42vh;
       background: #111;
+      overflow:hidden; 
     }
 
     .hero img {
@@ -64,8 +65,9 @@
     }
 
     .artist-name {
-      font-size: 22px;
+      font-size:clamp(32px,8vw,44px);
       font-weight: 700;
+      line-height:1.1;
     }
 
     .resonance {
