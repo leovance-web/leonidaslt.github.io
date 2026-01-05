@@ -374,3 +374,14 @@
   </script>
 </body>
 </html>
+<script>
+  const bioText = document.getElementById("bio-text");
+  const bioToggle = document.getElementById("bio-toggle");
+
+  bioToggle.addEventListener("click", () => {
+    bioText.classList.toggle("expanded");
+    bioToggle.textContent = bioText.classList.contains("expanded")
+      ? "See less"
+      : "See more";
+  });
+</script>
