@@ -2,10 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-
-  <!-- THIS IS CRITICAL -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Mono</title>
 
   <style>
@@ -14,53 +11,136 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-    }
-
-    html, body {
-      width: 100%;
-      height: 100%;
-      background: #000;
-      color: #fff;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     }
 
-    /* MOBILE LOCK */
     body {
+      background: #000;
+      color: #fff;
       display: flex;
       justify-content: center;
     }
 
-    /* THIS IS THE SINGLE MOBILE COLUMN */
+    /* MOBILE APP CONTAINER */
     .app {
       width: 100%;
-      max-width: 430px; /* iPhone Pro Max width */
+      max-width: 430px;
       min-height: 100vh;
       background: #000;
     }
 
     /* HEADER */
-    .header {
+    header {
       height: 56px;
       display: flex;
       align-items: center;
       justify-content: center;
-    }
-
-    .logo {
-      font-size: 20px;
       font-weight: 600;
       letter-spacing: 0.5px;
     }
 
-    /* PLACEHOLDER SECTIONS */
-    .section {
-      padding: 24px 16px;
-      border-top: 1px solid rgba(255,255,255,0.08);
+    /* HERO */
+    .hero {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1 / 1; /* square */
+      background: #111;
     }
 
-    .section-title {
-      opacity: 0.6;
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.85), transparent 50%);
+    }
+
+    .artist-name {
+      position: absolute;
+      bottom: 20px;
+      left: 16px;
+      z-index: 2;
+      font-size: 28px;
+      font-weight: 700;
+    }
+
+    .resonance-bar {
+      position: absolute;
+      right: 16px;
+      bottom: 24px;
+      width: 4px;
+      height: 60px;
+      background: rgba(255,255,255,0.25);
+      border-radius: 2px;
+    }
+
+    /* SECTION BASE */
+    section {
+      padding: 16px;
+      border-bottom: 1px solid #111;
+    }
+
+    /* BIO */
+    .bio {
       font-size: 14px;
+      line-height: 1.5;
+      color: #ccc;
+    }
+
+    /* PINNED TRACKS */
+    .track {
+      padding: 12px 0;
+      border-bottom: 1px solid #111;
+    }
+
+    .track-title {
+      font-weight: 500;
+    }
+
+    .track-meta {
+      font-size: 12px;
+      color: #777;
+      margin-top: 4px;
+    }
+
+    /* SECTION TITLES */
+    .section-title {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #777;
+      margin-bottom: 12px;
+    }
+
+    /* VISUALS */
+    .visuals {
+      display: flex;
+      gap: 12px;
+      overflow-x: auto;
+    }
+
+    .visual {
+      min-width: 120px;
+      aspect-ratio: 4 / 5;
+      background: #111;
+      border-radius: 6px;
+    }
+
+    /* BACK THIS ARTIST */
+    .donate {
+      background: #fff;
+      color: #000;
+      text-align: center;
+      padding: 14px;
+      border-radius: 8px;
+      font-weight: 600;
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 24px 0;
+      text-align: center;
+      font-size: 12px;
+      color: #555;
     }
   </style>
 </head>
@@ -68,50 +148,75 @@
 <body>
   <div class="app">
 
-    <!-- HEADER -->
-    <header class="header">
-      <div class="logo">Mono</div>
-    </header>
+    <header>Mono</header>
 
-    <!-- HERO PLACEHOLDER -->
-    <section class="section">
-      <div class="section-title">Hero (Artist)</div>
+    <div class="hero">
+      <div class="artist-name">LT</div>
+      <div class="resonance-bar"></div>
+    </div>
+
+    <section>
+      <div class="bio">
+        Producer from Mexico blending underground energy with modern rhythm.
+        Raw, minimal, intentional. Mono is where it starts.
+      </div>
     </section>
 
-    <!-- BIO -->
-    <section class="section">
-      <div class="section-title">Short Bio</div>
+    <section>
+      <div class="section-title">Pinned</div>
+
+      <div class="track">
+        <div class="track-title">Lackawanna Intro</div>
+        <div class="track-meta">Pinned Track</div>
+      </div>
+
+      <div class="track">
+        <div class="track-title">Midnight Bounce</div>
+        <div class="track-meta">Pinned Track</div>
+      </div>
     </section>
 
-    <!-- PINNED TRACKS -->
-    <section class="section">
-      <div class="section-title">Pinned Tracks</div>
-    </section>
-
-    <!-- DISCOGRAPHY -->
-    <section class="section">
+    <section>
       <div class="section-title">Discography</div>
+
+      <div class="track">
+        <div class="track-title">Lackawanna Beats</div>
+        <div class="track-meta">Mixtape • 2026</div>
+      </div>
     </section>
 
-    <!-- VISUALS -->
-    <section class="section">
+    <section>
       <div class="section-title">Visuals</div>
+      <div class="visuals">
+        <div class="visual"></div>
+        <div class="visual"></div>
+        <div class="visual"></div>
+      </div>
     </section>
 
-    <!-- BACK THIS ARTIST -->
-    <section class="section">
-      <div class="section-title">Back This Artist</div>
+    <section>
+      <div class="donate">Back This Artist</div>
     </section>
 
-    <!-- SIMILAR ARTISTS -->
-    <section class="section">
+    <section>
+      <div class="section-title">Appears On</div>
+      <div class="track">
+        <div class="track-title">Feature Track Example</div>
+        <div class="track-meta">Another Artist</div>
+      </div>
+    </section>
+
+    <section>
       <div class="section-title">Similar Artists</div>
+      <div class="track">
+        <div class="track-title">Underground Producer A</div>
+      </div>
+      <div class="track">
+        <div class="track-title">Underground Producer B</div>
+      </div>
     </section>
 
-    <!-- FOOTER -->
-    <section class="section">
-      <div class="section-title">Powered by Mono</div>
-    </section>
+    <footer>Powered by Mono</footer>
 
   </div>
 </body>
