@@ -2,8 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MONO</title>
+
+  <!-- THIS IS CRITICAL -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+  <title>Mono</title>
 
   <style>
     /* RESET */
@@ -13,36 +16,51 @@
       box-sizing: border-box;
     }
 
-    body {
-      background: #0b0b0b;
-      color: #ffffff;
+    html, body {
+      width: 100%;
+      height: 100%;
+      background: #000;
+      color: #fff;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    /* MOBILE LOCK */
+    body {
       display: flex;
       justify-content: center;
     }
 
-    /* MOBILE FRAME */
+    /* THIS IS THE SINGLE MOBILE COLUMN */
     .app {
       width: 100%;
-      max-width: 430px;
+      max-width: 430px; /* iPhone Pro Max width */
       min-height: 100vh;
-      background: #0b0b0b;
+      background: #000;
     }
 
     /* HEADER */
-    header {
+    .header {
       height: 56px;
       display: flex;
       align-items: center;
       justify-content: center;
-      border-bottom: 1px solid rgba(255,255,255,0.05);
     }
 
-    header h1 {
-      font-size: 18px;
+    .logo {
+      font-size: 20px;
       font-weight: 600;
       letter-spacing: 0.5px;
-      cursor: pointer;
+    }
+
+    /* PLACEHOLDER SECTIONS */
+    .section {
+      padding: 24px 16px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .section-title {
+      opacity: 0.6;
+      font-size: 14px;
     }
   </style>
 </head>
@@ -51,93 +69,50 @@
   <div class="app">
 
     <!-- HEADER -->
-    <header>
-      <h1 onclick="location.reload()">Mono</h1>
+    <header class="header">
+      <div class="logo">Mono</div>
     </header>
 
-    <!-- CONTENT STARTS HERE -->
+    <!-- HERO PLACEHOLDER -->
+    <section class="section">
+      <div class="section-title">Hero (Artist)</div>
+    </section>
+
+    <!-- BIO -->
+    <section class="section">
+      <div class="section-title">Short Bio</div>
+    </section>
+
+    <!-- PINNED TRACKS -->
+    <section class="section">
+      <div class="section-title">Pinned Tracks</div>
+    </section>
+
+    <!-- DISCOGRAPHY -->
+    <section class="section">
+      <div class="section-title">Discography</div>
+    </section>
+
+    <!-- VISUALS -->
+    <section class="section">
+      <div class="section-title">Visuals</div>
+    </section>
+
+    <!-- BACK THIS ARTIST -->
+    <section class="section">
+      <div class="section-title">Back This Artist</div>
+    </section>
+
+    <!-- SIMILAR ARTISTS -->
+    <section class="section">
+      <div class="section-title">Similar Artists</div>
+    </section>
+
+    <!-- FOOTER -->
+    <section class="section">
+      <div class="section-title">Powered by Mono</div>
+    </section>
 
   </div>
 </body>
 </html>
-<main>
-
-  <!-- HERO -->
-  <section class="hero">
-    <img src="https://via.placeholder.com/400x400" alt="Artist" />
-    <div class="hero-info">
-      <h2>Artist Name</h2>
-      <div class="resonance">
-        <div class="resonance-fill"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- BIO -->
-  <section class="bio">
-    <p>
-      This is a short artist bio. Only the first line should be visible by default.
-    </p>
-    <button>See more</button>
-  </section>
-
-  <!-- PINNED TRACKS -->
-  <section class="pinned">
-    <h3>Pinned</h3>
-    <ul>
-      <li>Track One</li>
-      <li>Track Two</li>
-      <li>Track Three</li>
-    </ul>
-  </section>
-
-  <!-- DISCOGRAPHY -->
-  <section class="discography">
-    <h3>Discography</h3>
-    <ul>
-      <li>Latest Release</li>
-      <li>Previous Release</li>
-      <li>Older Release</li>
-    </ul>
-  </section>
-
-  <!-- VISUALS -->
-  <section class="visuals">
-    <h3>Visuals</h3>
-    <div class="visual-row">
-      <img src="https://via.placeholder.com/200x250" />
-      <img src="https://via.placeholder.com/200x250" />
-      <img src="https://via.placeholder.com/200x250" />
-    </div>
-  </section>
-
-  <!-- BACK THIS ARTIST -->
-  <section class="support">
-    <button>Back This Artist</button>
-    <p>Support responsibly.</p>
-  </section>
-
-  <!-- APPEARS ON -->
-  <section class="appears">
-    <h3>Appears On</h3>
-    <ul>
-      <li>Another Artist – Track</li>
-      <li>Another Artist – Track</li>
-    </ul>
-  </section>
-
-  <!-- SIMILAR ARTISTS -->
-  <section class="similar">
-    <h3>Similar Artists</h3>
-    <div class="artist-row">
-      <div>Artist A</div>
-      <div>Artist B</div>
-      <div>Artist C</div>
-    </div>
-  </section>
-
-</main>
-
-<footer>
-  <p>Powered by Mono</p>
-</footer>
