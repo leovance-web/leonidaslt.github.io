@@ -235,20 +235,61 @@
 
     /* NOW PLAYING */
     .now-playing {
-      position: fixed;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 100%;
-      max-width: 390px;
-      height: 64px;
-      background: #0a0a0a;
-      display: flex;
-      align-items: center;
-      padding: 0 16px;
-      font-size: 14px;
-      border-top: 1px solid rgba(255,255,255,0.05);
-    }
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 390px;
+  height: 64px;
+  background-color: #0a0a0a;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  box-sizing: border-box;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  z-index: 1000; /* ensures it stays on top */
+}
+
+.track-info {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.track-cover {
+  width: 48px;
+  height: 48px;
+  background-color: #1a1a1a; /* subtle gray placeholder */
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.track-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 12px;
+  overflow: hidden;
+}
+
+.track-title {
+  font-weight: bold;
+  font-size: 14px;
+  color: #ffffff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.track-artist {
+  font-weight: 400;
+  font-size: 12px;
+  color: rgba(255,255,255,0.7);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
     footer {
       text-align: center;
@@ -350,10 +391,18 @@
     </div>
 
     <!-- NOW PLAYING -->
-    <div class="now-playing">
-      Now Playing: Pinned Track
+   <div class="now-playing">
+  <div class="track-info">
+    <!-- Track Cover / Placeholder -->
+    <div class="track-cover"></div>
+    
+    <!-- Track Text Info -->
+    <div class="track-text">
+      <div class="track-title">track.mp3</div>
+      <div class="track-artist">Leonidas</div>
     </div>
-
+  </div>
+</div>
     <audio id="audio" src="track.mp3"></audio>
 
   </div>
