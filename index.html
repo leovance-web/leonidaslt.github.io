@@ -474,14 +474,12 @@
 }
 </style>
 <script>
-const audio = document.getElementById('audio-source');
 const canvas = document.getElementById('waveform');
 const ctx = canvas.getContext('2d');
-
 canvas.width = canvas.offsetWidth;
-canvas.height = 20; // height of waveform, adjust if needed
+canvas.height = 10; // adjust thickness
 
-// Setup Web Audio API
+const audio = document.getElementById('audio-source');
 const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 const analyser = audioCtx.createAnalyser();
 const source = audioCtx.createMediaElementSource(audio);
@@ -494,38 +492,34 @@ const dataArray = new Uint8Array(bufferLength);
 
 function drawWaveform() {
     requestAnimationFrame(drawWaveform);
+
     analyser.getByteTimeDomainData(dataArray);
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = 'white';
+    ctx.beginPath();
 
     const sliceWidth = canvas.width / bufferLength;
     let x = 0;
 
-    ctx.lineWidth = 1;
-    ctx.strokeStyle = 'white'; // waveform color
-    ctx.beginPath();
-
     for (let i = 0; i < bufferLength; i++) {
-        const v = dataArray[i] / 128.0; // normalize
-        const y = v * canvas.height / 2;
-
-        if (i === 0) {
-            ctx.moveTo(x, y);
-        } else {
-            ctx.lineTo(x, y);
-        }
-
+        const v = dataArray[i] / 128.0; // normalize 0-2
+        const y = (v * canvas.height) / 2;
+        if (i === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
         x += sliceWidth;
     }
 
+    ctx.strokeStyle = 'white';
+    ctx.lineWidth = 1;
     ctx.stroke();
 }
 
-// Start drawing only when audio is interacted with
-audio.addEventListener('play', () => {
-    if (audioCtx.state === 'suspended') {
-        audioCtx.resume();
-    }
-    drawWaveform();
+// Unlock audio context on user interaction
+document.body.addEventListener('click', () => {
+    if (audioCtx.state === 'suspended') audioCtx.resume();
+    audio.play(); // optional: start playing
 });
+
+drawWaveform();
 </script>
