@@ -474,51 +474,49 @@
 }
 </style>
 <script>
+const audio = document.getElementById('audio-source');
 const canvas = document.getElementById('waveform');
 const ctx = canvas.getContext('2d');
-canvas.width = canvas.offsetWidth;
-canvas.height = 10; // adjust thickness
 
-const audio = document.getElementById('audio-source');
 const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 const analyser = audioCtx.createAnalyser();
+
 const source = audioCtx.createMediaElementSource(audio);
 source.connect(analyser);
 analyser.connect(audioCtx.destination);
-analyser.fftSize = 256;
 
+analyser.fftSize = 256;
 const bufferLength = analyser.frequencyBinCount;
 const dataArray = new Uint8Array(bufferLength);
 
+canvas.width = canvas.offsetWidth;
+canvas.height = canvas.offsetHeight;
+
 function drawWaveform() {
     requestAnimationFrame(drawWaveform);
-
+    
     analyser.getByteTimeDomainData(dataArray);
-
+    
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = 'white';
-    ctx.beginPath();
-
+    
     const sliceWidth = canvas.width / bufferLength;
     let x = 0;
-
-    for (let i = 0; i < bufferLength; i++) {
-        const v = dataArray[i] / 128.0; // normalize 0-2
+    
+    for(let i = 0; i < bufferLength; i++) {
+        const v = dataArray[i] / 128.0; // 0-2
         const y = (v * canvas.height) / 2;
-        if (i === 0) ctx.moveTo(x, y);
-        else ctx.lineTo(x, y);
+        ctx.fillRect(x, y, sliceWidth, 1);
         x += sliceWidth;
     }
-
-    ctx.strokeStyle = 'white';
-    ctx.lineWidth = 1;
-    ctx.stroke();
 }
 
-// Unlock audio context on user interaction
+// Unlock audio context on first interaction
 document.body.addEventListener('click', () => {
-    if (audioCtx.state === 'suspended') audioCtx.resume();
-    audio.play(); // optional: start playing
+    if(audioCtx.state === 'suspended') {
+        audioCtx.resume();
+    }
+    audio.play();
 });
 
 drawWaveform();
