@@ -254,15 +254,14 @@
 
 /* Waveform canvas inside the bar */
 #waveform {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  transform: translateY(-50%);
-  width: 100%;
-  height: 2px;
-  z-index: 0;
-  pointer-events: none;
-  background: transparent;
+    position: absolute;
+    top: 50%;               /* vertically center */
+    left: 0;
+    transform: translateY(-50%);
+    width: 100%;
+    height: 2px;
+    background: white;      /* placeholder line */
+    z-index: 0;             /* behind cover and text inside the bar */
 }
 
 /* Make album cover and text sit above waveform */
@@ -459,68 +458,4 @@
       ? "See less"
       : "See more";
   });
-</script>
-<style>
-  /* Placeholder waveform */
-#waveform {
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 100%;
-    height: 1px; /* thinner line */
-    background-color: white;
-    opacity: 0.3; /* less visible */
-    z-index: 0; /* stays behind text and cover */
-}
-</style>
-<script>
-const audio = document.getElementById("audio-source"); // your audio element
-const canvas = document.getElementById("waveform");
-const ctx = canvas.getContext("2d");
-
-// Resize canvas to match bar
-function resizeCanvas() {
-  canvas.width = canvas.offsetWidth;
-  canvas.height = canvas.offsetHeight;
-}
-resizeCanvas();
-window.addEventListener("resize", resizeCanvas);
-
-// Web Audio setup
-const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-const source = audioCtx.createMediaElementSource(audio);
-const analyser = audioCtx.createAnalyser();
-
-analyser.fftSize = 256;
-const bufferLength = analyser.frequencyBinCount;
-const dataArray = new Uint8Array(bufferLength);
-
-source.connect(analyser);
-analyser.connect(audioCtx.destination);
-
-// Resume audio context on interaction
-document.body.addEventListener("click", () => {
-  if (audioCtx.state === "suspended") audioCtx.resume();
-}, { once: true });
-
-// Draw waveform
-function drawWaveform() {
-  requestAnimationFrame(drawWaveform);
-  analyser.getByteFrequencyData(dataArray);
-
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-  const barWidth = canvas.width / bufferLength;
-  let x = 0;
-
-  for (let i = 0; i < bufferLength; i++) {
-    const barHeight = dataArray[i] * 0.6;
-    ctx.fillStyle = "rgba(255,255,255,0.85)";
-    ctx.fillRect(x, canvas.height - barHeight, barWidth - 1, barHeight);
-    x += barWidth;
-  }
-}
-
-drawWaveform();
 </script>
