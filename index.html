@@ -438,13 +438,14 @@
 </script>
 <style>
   /* Placeholder waveform */
-  #waveform {
+#waveform {
     position: absolute;
     left: 0;
-    bottom: 0;
+    top: 50%;               /* vertically center */
+    transform: translateY(-50%);
     width: 100%;
-    height: 2px; /* thin line */
+    height: 2px;            /* thickness of the line */
     background: white;
-    z-index: 0; /* behind text */
-  }
+    z-index: 0;             /* stays behind album cover & text */
+}
 </style>
