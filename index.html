@@ -117,11 +117,49 @@
     }
 
     /* BIO */
-    .bio {
-      font-size: 14px;
-      line-height: 1.4;
-      opacity: 0.85;
-    }
+  .bio {
+  position: relative;
+  padding: 16px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #eaeaea;
+}
+
+#bio-text {
+  max-height: 1.6em; /* shows ~1 line */
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  position: relative;
+}
+
+/* fade effect */
+#bio-text::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1.6em;
+  background: linear-gradient(to bottom, rgba(0,0,0,0), #000);
+}
+
+/* expanded state */
+#bio-text.expanded {
+  max-height: 200px;
+}
+
+#bio-text.expanded::after {
+  display: none;
+}
+
+#bio-toggle {
+  margin-top: 8px;
+  background: none;
+  border: none;
+  color: #aaa;
+  font-size: 13px;
+  cursor: pointer;
+}
 
     /* TRACK ROW */
     .track {
@@ -236,7 +274,7 @@
       </div>
     </div>
 
-  <section class="bio">
+    <section class="bio">
   <p id="bio-text">
     Independent producer shaping raw, minimal sound.<br>
     Built outside the system, released without permission.<br>
