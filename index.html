@@ -1,223 +1,207 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Mono</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mono — Artist</title>
 
-  <style>
-    /* RESET */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    }
+<style>
+:root {
+  --bg: #000;
+  --fg: #fff;
+  --muted: #888;
+  --accent: #fff;
+}
 
-    body {
-      background: #000;
-      color: #fff;
-      display: flex;
-      justify-content: center;
-    }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-    /* MOBILE APP CONTAINER */
-    .app {
-      width: 100%;
-      max-width: 430px;
-      min-height: 100vh;
-      background: #000;
-    }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+  line-height: 1.4;
+}
 
-    /* HEADER */
-    header {
-      height: 56px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-    }
+/* ================= HERO ================= */
 
-    /* HERO */
-    .hero {
-      position: relative;
-      width: 100%;
-      aspect-ratio: 1 / 1; /* square */
-      background: #111;
-    }
+.hero {
+  height: 78vh;
+  width: 100%;
+  background: #111;
+  display: flex;
+  align-items: flex-end;
+  padding: 20px;
+  position: relative;
+}
 
-    .hero::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.85), transparent 50%);
-    }
+.artist-name {
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
 
-    .artist-name {
-      position: absolute;
-      bottom: 20px;
-      left: 16px;
-      z-index: 2;
-      font-size: 28px;
-      font-weight: 700;
-    }
+/* Resonance waveform (static visual) */
+.waveform {
+  position: absolute;
+  bottom: 70px;
+  left: 20px;
+  right: 20px;
+  height: 30px;
+  display: flex;
+  gap: 4px;
+  opacity: 0.6;
+}
 
-    .resonance-bar {
-      position: absolute;
-      right: 16px;
-      bottom: 24px;
-      width: 4px;
-      height: 60px;
-      background: rgba(255,255,255,0.25);
-      border-radius: 2px;
-    }
+.wave {
+  flex: 1;
+  background: var(--accent);
+  opacity: 0.2;
+  border-radius: 2px;
+}
 
-    /* SECTION BASE */
-    section {
-      padding: 16px;
-      border-bottom: 1px solid #111;
-    }
+/* ================= SECTIONS ================= */
 
-    /* BIO */
-    .bio {
-      font-size: 14px;
-      line-height: 1.5;
-      color: #ccc;
-    }
+.section {
+  padding: 60px 20px;
+}
 
-    /* PINNED TRACKS */
-    .track {
-      padding: 12px 0;
-      border-bottom: 1px solid #111;
-    }
+.section-title {
+  font-size: 18px;
+  margin-bottom: 20px;
+  color: var(--muted);
+}
 
-    .track-title {
-      font-weight: 500;
-    }
+/* Visuals need weight */
+.visuals {
+  height: 55vh;
+  background: #111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  font-size: 16px;
+}
 
-    .track-meta {
-      font-size: 12px;
-      color: #777;
-      margin-top: 4px;
-    }
+/* ================= TRACK ================= */
 
-    /* SECTION TITLES */
-    .section-title {
-      font-size: 13px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: #777;
-      margin-bottom: 12px;
-    }
+.track {
+  padding: 24px 20px;
+  border-top: 1px solid #111;
+  border-bottom: 1px solid #111;
+}
 
-    /* VISUALS */
-    .visuals {
-      display: flex;
-      gap: 12px;
-      overflow-x: auto;
-    }
+.track-title {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
 
-    .visual {
-      min-width: 120px;
-      aspect-ratio: 4 / 5;
-      background: #111;
-      border-radius: 6px;
-    }
+.track-meta {
+  font-size: 14px;
+  color: var(--muted);
+}
 
-    /* BACK THIS ARTIST */
-    .donate {
-      background: #fff;
-      color: #000;
-      text-align: center;
-      padding: 14px;
-      border-radius: 8px;
-      font-weight: 600;
-    }
+/* ================= FIXED UI ================= */
 
-    /* FOOTER */
-    footer {
-      padding: 24px 0;
-      text-align: center;
-      font-size: 12px;
-      color: #555;
-    }
-  </style>
+.quick-actions {
+  position: fixed;
+  bottom: 64px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-around;
+  padding: 12px 0;
+  background: rgba(0,0,0,0.9);
+  border-top: 1px solid #111;
+}
+
+.quick-actions button {
+  background: none;
+  border: none;
+  color: var(--fg);
+  font-size: 14px;
+}
+
+.now-playing {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 12px 20px;
+  background: #000;
+  border-top: 1px solid #111;
+  font-size: 14px;
+}
+
+/* ================= AUDIO ================= */
+
+audio {
+  display: none;
+}
+</style>
 </head>
 
 <body>
-  <div class="app">
 
-    <header>Mono</header>
-
-    <div class="hero">
-      <div class="artist-name">Leonidas</div>
-      <div class="resonance-bar"></div>
-    </div>
-
-    <section>
-      <div class="bio">
-        Producer from Mexico blending underground energy with modern rhythm.
-        Raw, minimal, intentional. Mono is where it starts.
-      </div>
-    </section>
-
-    <section>
-      <div class="section-title">Pinned</div>
-
-      <div class="track">
-        <div class="track-title">Bratz Girl</div>
-        <div class="track-meta">Pinned Track</div>
-      </div>
-
-      <div class="track">
-        <div class="track-title">This Was Before</div>
-        <div class="track-meta">Pinned Track</div>
-      </div>
-    </section>
-
-    <section>
-      <div class="section-title">Discography</div>
-
-      <div class="track">
-        <div class="track-title">Lackawanna Beats</div>
-        <div class="track-meta">Mixtape • 2025</div>
-      </div>
-    </section>
-
-    <section>
-      <div class="section-title">Visuals</div>
-      <div class="visuals">
-        <div class="visual"></div>
-        <div class="visual"></div>
-        <div class="visual"></div>
-      </div>
-    </section>
-
-    <section>
-      <div class="donate">Back This Artist</div>
-    </section>
-
-    <section>
-      <div class="section-title">Appears On</div>
-      <div class="track">
-        <div class="track-title">Feature Track Example</div>
-        <div class="track-meta">Another Artist</div>
-      </div>
-    </section>
-
-    <section>
-      <div class="section-title">Similar Artists</div>
-      <div class="track">
-        <div class="track-title">Underground Producer A</div>
-      </div>
-      <div class="track">
-        <div class="track-title">Underground Producer B</div>
-      </div>
-    </section>
-
-    <footer>Powered by Mono</footer>
-
+<!-- HERO -->
+<div class="hero">
+  <div class="waveform">
+    <div class="wave" style="height:20%"></div>
+    <div class="wave" style="height:60%"></div>
+    <div class="wave" style="height:40%"></div>
+    <div class="wave" style="height:80%"></div>
+    <div class="wave" style="height:30%"></div>
+    <div class="wave" style="height:70%"></div>
   </div>
+  <div class="artist-name">ARTIST NAME</div>
+</div>
+
+<!-- VISUALS -->
+<div class="section">
+  <div class="section-title">Visuals</div>
+  <div class="visuals">
+    Visual content placeholder
+  </div>
+</div>
+
+<!-- TRACK -->
+<div class="track">
+  <div class="track-title">Track Title</div>
+  <div class="track-meta">Mono · Single</div>
+</div>
+
+<!-- AUDIO -->
+<audio id="audio" src="track.mp3"></audio>
+
+<!-- QUICK ACTIONS -->
+<div class="quick-actions">
+  <button onclick="togglePlay()">Play / Pause</button>
+  <button>Save</button>
+  <button>Share</button>
+</div>
+
+<!-- NOW PLAYING -->
+<div class="now-playing" id="nowPlaying">
+  Now Playing: —
+</div>
+
+<script>
+const audio = document.getElementById("audio");
+const nowPlaying = document.getElementById("nowPlaying");
+
+function togglePlay() {
+  if (audio.paused) {
+    audio.play();
+    nowPlaying.textContent = "Now Playing: Track Title";
+  } else {
+    audio.pause();
+    nowPlaying.textContent = "Paused: Track Title";
+  }
+}
+</script>
+
 </body>
 </html>
