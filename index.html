@@ -60,3 +60,149 @@
   </div>
 </body>
 </html>
+<main>
+
+  <!-- HERO -->
+  <section class="hero">
+    <img src="https://via.placeholder.com/400x400" alt="Artist" />
+    <div class="hero-info">
+      <h2>Artist Name</h2>
+      <div class="resonance">
+        <div class="resonance-fill"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BIO -->
+  <section class="bio">
+    <p>
+      This is a short artist bio. Only the first line should be visible by default.
+    </p>
+    <button>See more</button>
+  </section>
+
+  <!-- PINNED TRACKS -->
+  <section class="pinned">
+    <h3>Pinned</h3>
+    <ul>
+      <li>Track One</li>
+      <li>Track Two</li>
+      <li>Track Three</li>
+    </ul>
+  </section>
+
+  <!-- DISCOGRAPHY -->
+  <section class="discography">
+    <h3>Discography</h3>
+    <ul>
+      <li>Latest Release</li>
+      <li>Previous Release</li>
+      <li>Older Release</li>
+    </ul>
+  </section>
+
+  <!-- VISUALS -->
+  <section class="visuals">
+    <h3>Visuals</h3>
+    <div class="visual-row">
+      <img src="https://via.placeholder.com/200x250" />
+      <img src="https://via.placeholder.com/200x250" />
+      <img src="https://via.placeholder.com/200x250" />
+    </div>
+  </section>
+
+  <!-- BACK THIS ARTIST -->
+  <section class="support">
+    <button>Back This Artist</button>
+    <p>Support responsibly.</p>
+  </section>
+
+  <!-- APPEARS ON -->
+  <section class="appears">
+    <h3>Appears On</h3>
+    <ul>
+      <li>Another Artist – Track</li>
+      <li>Another Artist – Track</li>
+    </ul>
+  </section>
+
+  <!-- SIMILAR ARTISTS -->
+  <section class="similar">
+    <h3>Similar Artists</h3>
+    <div class="artist-row">
+      <div>Artist A</div>
+      <div>Artist B</div>
+      <div>Artist C</div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>Powered by Mono</p>
+</footer>
+main section {
+  padding: 16px;
+}
+
+.hero img {
+  width: 100%;
+  border-radius: 12px;
+}
+
+.hero-info {
+  margin-top: 12px;
+}
+
+.resonance {
+  height: 4px;
+  background: rgba(255,255,255,0.1);
+  margin-top: 8px;
+}
+
+.resonance-fill {
+  width: 40%;
+  height: 100%;
+  background: #ffffff;
+}
+
+h3 {
+  font-size: 14px;
+  margin-bottom: 8px;
+  opacity: 0.7;
+}
+
+ul {
+  list-style: none;
+}
+
+li {
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.visual-row {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+}
+
+.visual-row img {
+  border-radius: 8px;
+}
+
+button {
+  background: #ffffff;
+  color: #000;
+  border: none;
+  padding: 12px;
+  width: 100%;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+footer {
+  text-align: center;
+  padding: 24px;
+  opacity: 0.4;
+} 
