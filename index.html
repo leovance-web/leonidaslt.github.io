@@ -438,13 +438,13 @@
 </script>
 <style>
   /* Placeholder waveform */
-  #waveform {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 2px; /* thin line */
-    background: white;
-    z-index: 0; /* behind text */
-  }
-</style>
+#waveform {
+  position: absolute;
+  left: 0;
+  top: 50%;            /* vertically center */
+  transform: translateY(-50%); /* adjust so middle of line aligns with middle of bar */
+  width: 100%;
+  height: 2px;          /* thickness of the line */
+  background: white;
+  z-index: 0;           /* behind text */
+}
