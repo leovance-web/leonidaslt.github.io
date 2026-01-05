@@ -429,23 +429,25 @@
     </div>
 
     <!-- NOW PLAYING -->
-   <div class="now-playing">
-     <!-- Add this *inside* the now-playing div, *above* track-info -->
-<canvas id="waveform"></canvas>
-  <div class="track-info">
-    <!-- Track Cover / Placeholder -->
-    <div class="track-cover"></div>
-    
-    <!-- Track Text Info -->
-    <div class="track-text">
-      <div class="track-title">track.mp3</div>
-      <div class="track-artist">Leonidas</div>
-    </div>
-  </div>
-</div>
-    <audio id="audio" src="track.mp3"></audio>
+<div id="now-playing-bar">
+    <!-- Waveform placeholder goes first so it's behind the rest -->
+    <canvas id="waveform"></canvas>
 
-  </div>
+    <!-- Track info container -->
+    <div class="track-info">
+        <!-- Album cover placeholder -->
+        <div class="track-cover"></div>
+
+        <!-- Text info -->
+        <div class="track-text">
+            <div class="track-title">track.mp3</div>
+            <div class="track-artist">Leonidas</div>
+        </div>
+    </div>
+
+    <!-- Audio element -->
+    <audio id="audio-source" src="track.mp3"></audio>
+</div>
 
   <script>
     const audio = document.getElementById('audio');
