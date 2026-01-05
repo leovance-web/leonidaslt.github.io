@@ -234,21 +234,41 @@
     }
 
     /* NOW PLAYING */
-    .now-playing {
-  position: fixed;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
-  max-width: 390px;
-  height: 64px;
-  background-color: #0a0a0a;
-  display: flex;
-  align-items: center;
-  padding: 0 16px;
-  box-sizing: border-box;
-  border-top: 1px solid rgba(255,255,255,0.05);
-  z-index: 1000; /* ensures it stays on top */
+   .now-playing {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 390px;
+    height: 64px;
+    background: #0A0A0A;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    box-sizing: border-box;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    z-index: 1000; /* Now Playing bar stays on top of everything else outside it */
+    overflow: hidden; /* important so waveform can't escape */
+}
+
+/* Waveform canvas inside the bar */
+#waveform {
+    position: absolute;
+    top: 50%;               /* vertically center */
+    left: 0;
+    transform: translateY(-50%);
+    width: 100%;
+    height: 2px;
+    background: white;      /* placeholder line */
+    z-index: 0;             /* behind cover and text inside the bar */
+}
+
+/* Make album cover and text sit above waveform */
+.track-cover,
+.track-text {
+    position: relative;     /* keeps them in normal flow */
+    z-index: 1;             /* sits above waveform */
 }
 
 .track-info {
