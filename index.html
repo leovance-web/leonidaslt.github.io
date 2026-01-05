@@ -70,19 +70,39 @@
       line-height:1.1;
     }
 
-    .resonance {
-      margin-top: 6px;
-      height: 4px;
-      width: 100%;
-      background: rgba(255,255,255,0.15);
-      border-radius: 2px;
-      overflow: hidden;
-    }
+    /* Resonance container */
+.resonance {
+  position: absolute;
+  right: 14px;
+  bottom: 18px;
 
-    .resonance-fill {
-      width: 42%;
-      height: 100%;
-      background: #fff;
+  width: 8px;              /* NOT too thin */
+  height: 45%;             /* Relative to hero */
+
+  background: rgba(255,255,255,0.15);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+/* Resonance fill */
+.resonance-fill {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 80%;             /* 80% retention */
+
+  background: rgba(255,255,255,0.85);
+  border-radius: 6px;
+
+  animation: resonancePulse 3.2s ease-in-out infinite;
+}
+
+/* Subtle pulse */
+@keyframes resonancePulse {
+  0%   { opacity: 0.6; }
+  50%  { opacity: 1; }
+  100% { opacity: 0.6; }
+}
     }
 
     /* SECTIONS */
